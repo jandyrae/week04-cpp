@@ -15,18 +15,20 @@ void display_options();
 list<Account>::iterator find_by_id(list<Account>& account_list, int account_ID);
 void remove_account(list<Account>& account_list, int account_ID);
 void banks_total_balance(list<Account>& account_list, float account_balance);
-void banks_dividend(list<Account>& account_list, Account accounts, float dividend);
+// float apply_to_balance(float balance, float dividend);
+// void banks_dividend(list<Account>& account_list);
 
 int main()
 {
 	int option, id;
 	string name = "";
-	float deposit{}, withdrawl{}, balance{};
-	float dividend = 0.0f;
+	float deposit{}, withdrawl{}, balance{}, dividend{};
+	// float dividend = 0.0f;
 	bool open_transaction = true;
 	Account account;
 	list<Account> accounts;
 	list<Account>::iterator it;
+	float current_bal = 1.0f;
 
 	while (open_transaction) {
 		display_options();
@@ -115,19 +117,27 @@ int main()
 			cout << "------------------\n";
 			cout << "------------------\n";
 			banks_total_balance(accounts, balance);
+			cout << "------------------\n";
 			break;
 
 		case 8:
 			// option '8' - Program should add a dividend to all of the accounts
 			cout << "------------------\n";
-			cout << "------------------\n";
-			banks_dividend(accounts, account, dividend);
+			cout << "Enter a dividend as a percentage: ";
+			cin >> dividend;
+			dividend /= 100;
+			cout << "You entered a dividend of " << dividend;
+			// current_bal = account.get_balance();
+			// std::transform(accounts.cbegin(), accounts.cend(), accounts.begin(), [dividend](float *current_bal) { return *current_bal * dividend; });
+			// banks_dividend(accounts, account, dividend);
 			break;
 
 		default:
 			// none of the above
 			break;
 		}
+		//string s{ "hello" };
+		// transform(s.cbegin(), s.cend(), s.begin(), [](unsigned char c) { return std::toupper(c); });
 	}
 
 }
@@ -177,17 +187,20 @@ void banks_total_balance(list<Account>& account_list, float account_balance)
 	 cout << "The total balance at the bank is $ " << bank_balance;
 }
 
-float apply_to_balance(Account account) {
-	return account.get_balance();
+/*
+float apply_to_balance() {
+	{
+		return get_balance();
+	}
 };
 
-void banks_dividend(list<Account>& account_list, Account account, float dividend)
+*/
+/*
+
+void banks_dividend(list<Account>& account_list, float dividend)
 {
-	cout << "Enter a dividend as a percentage: ";
-	cin >> dividend;
-	dividend /= 100;
-	cout << "You entered a dividend of " << dividend;
-	// Applies a specified function object to each element in a source range or to a pair of 
+	// Applies a specified function object to each element in a source range or to a pair of
 	// elements from two source ranges and copies the return values of the function object into a destination range.
-	//transform(account_list.cbegin(), account_list.cend(), account_list.begin(), apply_to_balance, dividend, multiplies<float>());
+	std::transform(account_list.cbegin(), account_list.cend(), account_list.begin(), [dividend](float apply_to_balance()) { return apply_to_balance() * dividend; });
 }
+*/
