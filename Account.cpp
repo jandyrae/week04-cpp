@@ -56,7 +56,6 @@ void Account::account_create(list<Account>& account_list)
 
 void Account::display_account_list(list<Account>& account_list)
 {
-
 	for_each(account_list.begin(), account_list.end(), [](auto& acct)
 		{
 			acct.account_display();
