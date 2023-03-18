@@ -61,3 +61,8 @@ void Account::display_account_list(list<Account>& account_list)
 			acct.account_display();
 		});
 }
+
+void Account::update_balance(float new_balance)
+{
+	account_balance = new_balance;
+}

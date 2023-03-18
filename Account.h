@@ -26,4 +26,5 @@ public:
 	void account_withdrawl(float withdrawl);
 	void account_create(list<Account>& account_list);
 	void display_account_list(list<Account>& account_list);
+	void update_balance(float new_balance);
 };
